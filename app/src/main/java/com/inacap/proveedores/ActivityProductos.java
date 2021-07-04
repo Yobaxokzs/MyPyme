@@ -80,7 +80,36 @@ public class ActivityProductos extends AppCompatActivity {
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "administracionProductos", null, 1);
         SQLiteDatabase BaseDeDatos = admin.getWritableDatabase();
 
-        String idProdBuscar = et_idProd.getText().toString();
+        //String idProdBuscar = et_idProd.getText().toString();  //<- aqui se cambia para que se busque por nombre..
+        String NomProdBuscar = et_nombreProd.getText().toString();
+
+        if (!NomProdBuscar.isEmpty()) {
+            Cursor fila = BaseDeDatos.rawQuery
+                    ("select idProducto, categoriaProducto, precioProd, stockProd  from Productos where nombreProd", null);
+
+            if (fila.moveToFirst()) {
+                et_idProd.setText(fila.getString(0));
+                et_categoria.setText(fila.getString(1));
+                //et_nombreProd.setText(fila.getString(2));
+                et_precioProd.setText(fila.getString(3));
+                et_stockProd.setText(fila.getString(4));
+                // imagen.setImageURI(fila.getString(5));
+                BaseDeDatos.close();
+            } else {
+                Toast.makeText(this, "No existe el registro", Toast.LENGTH_SHORT).show();
+                BaseDeDatos.close();
+            }
+        } else {
+            Toast.makeText(this, "Debes ingresar el Nombre del producto para", Toast.LENGTH_SHORT).show();
+        }
+
+
+        // aqui el codigo base por si no funcionan los cambios...
+        /*
+        * AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "administracionProductos", null, 1);
+        SQLiteDatabase BaseDeDatos = admin.getWritableDatabase();
+
+        String idProdBuscar = et_idProd.getText().toString();  //<- aqui se cambia para que se busque por nombre..
 
         if (!idProdBuscar.isEmpty()) {
             Cursor fila = BaseDeDatos.rawQuery
@@ -100,6 +129,7 @@ public class ActivityProductos extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Debes ingresar el ID del producto", Toast.LENGTH_SHORT).show();
         }
+        * */
     }
 
     //Metodo para eliminar registro

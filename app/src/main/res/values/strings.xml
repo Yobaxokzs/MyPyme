@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Proveedores</string>
+    <string name="TextView">Ingresa un nombre</string>
 </resources>

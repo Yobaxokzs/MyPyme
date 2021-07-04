@@ -1,10 +1,10 @@
 package com.inacap.proveedores;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Inicio extends AppCompatActivity {
 
@@ -30,6 +30,22 @@ public class Inicio extends AppCompatActivity {
         Intent Proveedor = new Intent(this, MainActivity.class);
         startActivity(Proveedor);
     }
+
+    public void Clientes(View view) {
+        Intent Clientes = new Intent(this, ActivityClientes.class);
+        startActivity(Clientes);
+    }
+    public void Pedidos(View view) {
+        Intent Pedidos = new Intent(this, Pedidos.class);
+        startActivity(Pedidos);
+    }
+
+    public void Inventario(View view) {
+        Intent Inventario = new Intent(this, pruebainventario.class);
+        startActivity(Inventario);
+    }
+
+
 
 
 

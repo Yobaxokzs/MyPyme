@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Proveedores">
-        <activity android:name=".Inicio">
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,6 +24,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".ActivityProductos"></activity>
+        <activity android:name=".ActivityClientes"></activity>
+        <activity android:name=".Inventario"></activity>
+        <activity android:name=".Pedidos"></activity>
+        <activity android:name=".Registrar"></activity>
+        <activity android:name=".Inicio"></activity>
+        <activity android:name=".pruebainventario"></activity>
     </application>
 
 </manifest>
