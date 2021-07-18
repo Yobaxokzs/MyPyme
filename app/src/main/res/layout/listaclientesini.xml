@@ -5,23 +5,20 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="494dp"
         android:orientation="vertical">
 
         <ListView
-            android:id="@+id/id_listviewprueba"
+            android:id="@+id/id_listaClientesINI"
             android:layout_width="match_parent"
-            android:layout_height="604dp" >
-
-        </ListView>
+            android:layout_height="412dp" />
 
         <EditText
-            android:id="@+id/buscador"
+            android:id="@+id/et_idBuscadorClientesINI"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Buscar aquí"
+            android:hint="Buscar Aquí"
             android:inputType="textPersonName" />
     </LinearLayout>
-
 </RelativeLayout>

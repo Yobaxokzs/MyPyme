@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Proveedores</string>
     <string name="TextView">Ingresa un nombre</string>
+    <string name="nombreProdPedido">Nombre pedido</string>
+    <string name="nombreCliPedido">Nombre cliente..</string>
+    <string name="ciudadPedido">Ciudad pedido..</string>
+    <string name="contactoiPedido">Contacto pedido..</string>
 </resources>

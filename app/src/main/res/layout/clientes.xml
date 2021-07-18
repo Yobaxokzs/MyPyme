@@ -38,7 +38,7 @@
         android:id="@+id/btnBuscarCliente"
         android:layout_width="78dp"
         android:layout_height="53dp"
-        android:onClick="CLIENTEBuscarCliente"
+        android:onClick="CLIENTEIrAlListadoCliINI"
         android:text="Buscar"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -47,20 +47,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.915" />
-
-    <Button
-        android:id="@+id/btnBuscarNomCli"
-        android:layout_width="78dp"
-        android:layout_height="53dp"
-        android:onClick="Buscar"
-        android:text="Buscar"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.873"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.069" />
 
     <Button
         android:id="@+id/btnAgregarCliente"
@@ -186,20 +172,6 @@
         app:layout_constraintVertical_bias="0.592" />
 
     <EditText
-        android:id="@+id/txt_nombreClienteBuscar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.253"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.084" />
-
-    <EditText
         android:id="@+id/txt_idCliente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -231,22 +203,22 @@
         android:text="Ciudad cliente:"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.075"
+        app:layout_constraintHorizontal_bias="0.072"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.762" />
+        app:layout_constraintVertical_bias="0.761" />
 
-    <EditText
-        android:id="@+id/txt_ciudadCliente"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="213dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnBuscarCliente"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.791"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.772" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView7"
+        app:layout_constraintTop_toBottomOf="@+id/txt_correoCliente"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

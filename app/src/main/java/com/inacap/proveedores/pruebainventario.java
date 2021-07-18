@@ -3,9 +3,12 @@ package com.inacap.proveedores;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -18,6 +21,7 @@ public class pruebainventario extends AppCompatActivity {
     ListView listViewPedidos;
     ArrayList<String> listaInformacion;
     ArrayList<ClasePedidos> listaPedidos;
+    EditText buscador;
 
     AdminSQLiteOpenHelper conn;
 
@@ -25,14 +29,15 @@ public class pruebainventario extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pruebainventario);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         conn = new AdminSQLiteOpenHelper(getApplicationContext(),"administracionPedidos",null,1);
 
         listViewPedidos = (ListView) findViewById(R.id.id_listviewprueba);
-
+        buscador = (EditText) findViewById(R.id.buscador);
         consultarListaInventario();
 
-        ArrayAdapter adaptador = new ArrayAdapter(this, android.R.layout.simple_list_item_1,listaInformacion);
+        ArrayAdapter adaptador = new ArrayAdapter(this, android.R.layout.simple_list_item_1,listaPedidos);
         listViewPedidos.setAdapter(adaptador);
 
         listViewPedidos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -52,7 +57,26 @@ public class pruebainventario extends AppCompatActivity {
             }
         });
 
+        //--- filtro campo editText.
+        buscador.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                adaptador.getFilter().filter(s);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
     }
+
 
 
       private  void consultarListaInventario(){
@@ -75,15 +99,10 @@ public class pruebainventario extends AppCompatActivity {
 
             listaPedidos.add(pedido);
         }
-        obtenerLista();
+
     }
 
-    private void obtenerLista() {
-        listaInformacion = new ArrayList<>();
-        for(int i=0; i<listaPedidos.size();i++){
-            listaInformacion.add(listaPedidos.get(i).getIdPedido()+" - " + listaPedidos.get(i).getNombreCliente());
-        }
-    }
+
 
 
 }

@@ -11,20 +11,15 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="183dp"
+        android:layout_height="57dp"
         android:orientation="horizontal"></LinearLayout>
 
 
-    <TextView
-        android:id="@+id/textView"
+    <ImageView
+        android:id="@+id/imageView3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:gravity="center"
-        android:text="Inicio de Sesión"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        />
+        android:layout_height="228dp"
+        app:srcCompat="@drawable/logo_small" />
 
     <LinearLayout
         android:layout_width="match_parent"

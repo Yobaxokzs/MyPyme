@@ -4,11 +4,11 @@ import androidx.annotation.NonNull;
 
 public class ClasePedidos {
     int idPedido, cantidadProducto;
-    String nombreCliente, ciudadPedido, nombreProducto, estadoPedido, fechaCreacion, fechaEntrega;
+    String nombreCliente, ciudadPedido, nombreProducto, estadoPedido, fechaCreacion, fechaEntrega, contactoPedido;
 
     public ClasePedidos(){
     }
-    public ClasePedidos(int idPedido, String nombreCliente, String ciudadPedido, String nombreProducto, int cantidadProducto, String estadoPedido, String fechaCreacion, String fechaEntrega){
+    public ClasePedidos(int idPedido, String nombreCliente, String ciudadPedido, String nombreProducto, int cantidadProducto, String estadoPedido, String fechaCreacion, String fechaEntrega, String contactoPedido){
         this.idPedido = idPedido;
         this.nombreCliente = nombreCliente;
         this.ciudadPedido = ciudadPedido;
@@ -17,6 +17,7 @@ public class ClasePedidos {
         this.estadoPedido = estadoPedido;
         this.fechaCreacion = fechaCreacion;
         this.fechaEntrega = fechaEntrega;
+        this.contactoPedido = contactoPedido;
     }
 
     public int getIdPedido(){
@@ -55,7 +56,7 @@ public class ClasePedidos {
     }
 
     public String getEstadoPedido(){
-        return nombreCliente;
+        return estadoPedido;
     }
     public void setEstadoPedido(String estadoPedido){
         this.estadoPedido = estadoPedido;
@@ -75,16 +76,22 @@ public class ClasePedidos {
         this.fechaEntrega = fechaEntrega;
     }
 
+    public String getContactoPedido(){
+        return contactoPedido;
+    }
+    public void setContactoPedido(String contactoPedido){
+        this.contactoPedido = contactoPedido;
+    }
     //@NonNull
     @Override
     public String toString() {
-        return "ID=" + idPedido + '\n' +
-                "Nombre Cliente=" + nombreCliente + '\n' +
-                "CiudadPedido=" + ciudadPedido + '\n' +
-                "Nombre Producto=" + nombreProducto + '\n' +
-                "Cantidad Producto=" + cantidadProducto + '\n' +
-                "Estado Pedido=" + estadoPedido + '\n' +
-                "Fecha Creación=" + fechaCreacion + '\n' +
-                "Fecha Entrega=" + fechaEntrega + '\n';
+        return "Código de Pedido:  " + idPedido + '\n' +
+                "Nombre Cliente: " + nombreCliente + '\n' +
+                "Ciudad de Pedido: " + ciudadPedido + '\n' +
+                "Nombre de Producto: " + nombreProducto + '\n' +
+                "Cantidad Producto: " + cantidadProducto + '\n' +
+                "Estado Pedido: " + estadoPedido + '\n' +
+                "Fecha Creación: " + fechaCreacion + '\n' +
+                "Fecha Entrega: " + fechaEntrega + '\n';
     }
 }

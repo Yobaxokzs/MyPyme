@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.proveedores);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         d = new DAOHelperProveedor(this);
 
         /**
@@ -109,48 +110,7 @@ public class MainActivity extends AppCompatActivity  {
                 }
             }
         });
-
-        //copia del codigo de respaldo.
-        /*
-        btnBuscar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Si el campo de texto está vacío
-                if (etID.getText().toString().isEmpty()) {
-                    Toast.makeText(MainActivity.this, "El ID está vacío", Toast.LENGTH_SHORT).show();
-                } //si el ID tiene datos, los rescato
-                else {
-                    String id = (etID.getText().toString());
-                    Proveedor p = d.buscarProveedor(id);
-                    //Si no encuentra el ID permite guardar
-                    if (p == null) {
-                        Toast.makeText(MainActivity.this, "El ID no existe, puede guardar este dato", Toast.LENGTH_SHORT).show();
-                        //Habilitamos y Deshabilitamos los botones necesarios
-                        btnAgregar.setEnabled(true);
-                        btnEliminar.setEnabled(false);
-                        btnModificar.setEnabled(false);
-                        //requestFocus sirve para dejar el puntero posicionado en el campo etID.
-                        etID.requestFocus();
-                    } //Si encuentra datos, los muestro en la app
-                    else {
-                        etNombre.setText(p.getNombre());
-                        etApellido.setText(p.getApellido());
-                        etCorreo.setText(p.getCorreo());
-                        etNumero.setText(p.getNumero());
-                        btnAgregar.setEnabled(false);
-                        btnEliminar.setEnabled(true);
-                        btnModificar.setEnabled(true);
-                    }
-                }
-            }
-        });
-        */
     }
-
-
-
-
-
 
     public void display(String titulo, String mensaje) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

@@ -1,17 +1,17 @@
 package com.inacap.proveedores;
 public class Usuario {
     int id;
-    String nombre, apellido, usuario, contraseña;
+    String nombre, apellido, usuario, contrasena;
 
     public Usuario() {
     }
 
-    public Usuario(int id, String nombre, String apellido, String usuario, String contraseña) {
+    public Usuario(int id, String nombre, String apellido, String usuario, String contrasena) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.usuario = usuario;
-        this.contraseña = contraseña;
+        this.contrasena = contrasena;
     }
 
     public int getId() {
@@ -46,12 +46,12 @@ public class Usuario {
         this.usuario = usuario;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getContrasena() {
+        return contrasena;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
     public String toString() {
@@ -59,6 +59,6 @@ public class Usuario {
                 "Nombre='" + nombre + '\n' +
                 "Apellido='" + apellido + '\n' +
                 "Usuario='" + usuario + '\n' +
-                "Contraseña='" + contraseña + '\n';
+                "Contraseña='" + contrasena + '\n';
     }
 }

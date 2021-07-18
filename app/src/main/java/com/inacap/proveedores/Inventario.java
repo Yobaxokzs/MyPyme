@@ -33,6 +33,7 @@ public class Inventario extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.inventario);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         lv1 = (ListView)findViewById(R.id.IdListView);
         bbtnBuscar = (Button) findViewById(R.id.btnBuscarPedidoListado);
@@ -97,42 +98,8 @@ public class Inventario extends AppCompatActivity {
 
                 }
             });
-
     }
 
-    public void BuscarPedido (View view){
-
-        /*
-            AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "administracioListaPedidos", null, 1);
-        SQLiteDatabase BaseDeDatos = admin.getWritableDatabase(); // se abrira la base de datos en modo lectura y escritura.
-
-        String NombreInventarioBuscar = et_nombreListadoBuscar.getText().toString();
-
-        if (!NombreInventarioBuscar.isEmpty()) {
-            Cursor fila = BaseDeDatos.rawQuery
-                    ("select idPedido, nombreCliente, ciudadPedido, nombreProducto, cantidadProducto, estadoPedido, fechaCreacion, fechaEntrega, contactoPedido" +
-                            "  from Pedidos where nombreCliente="+ et_nombreListadoBuscar, null);
-
-            if (fila.moveToFirst()) {                                   // aquí trabajaremos con Arrays, OJO que el primer valor empieza en 0: 0,1,2,3...
-                et_idPedido.setText(fila.getString(0));
-                et_clientePedido.setText(fila.getString(1));
-                et_ciudadPedido.setText(fila.getString(2));
-                et_productoPedido.setText(fila.getString(3));
-                et_cantidad.setText(fila.getString(4));
-                et_estado.setText(fila.getString(5));
-                et_fechaCreacion.setText(fila.getString(6));
-                et_fechaEntrega.setText(fila.getString(7));
-                et_contactoPedido.setText(fila.getString(8));
-                BaseDeDatos.close();
-            } else {
-                Toast.makeText(this, "No existe el registro", Toast.LENGTH_SHORT).show();
-                BaseDeDatos.close();
-            }
-        } else {
-            Toast.makeText(this, "Debes ingresar el NOMBRE del pedido", Toast.LENGTH_SHORT).show();
-        }
-        */
-    }
 
     public ArrayList<String> obtenerNombre(){
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "administracionInventario", null, 1);

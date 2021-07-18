@@ -20,6 +20,7 @@ public class Registrar extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registrar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //Inicializamos el DAOHelper dentro del onCreate
         d = new DAOHelperUsuario(this);
 
@@ -67,18 +68,15 @@ public class Registrar extends AppCompatActivity {
                     u.setNombre(etNom.getText().toString());
                     u.setApellido(etApe.getText().toString());
                     u.setUsuario(etUsu.getText().toString());
-                    u.setContraseña(etPas.getText().toString());
+                    u.setContrasena(etPas.getText().toString());
                     long res = d.agregarUsuario(u);
                     if (res != -1) {
-                        //Mostramos un OK (AlertDialog (método display())
-                        StringBuffer buffer = new StringBuffer();
-                        buffer.append("Nombre: " + u.getNombre() + "\n");
-                        buffer.append("Apellido: " + u.getApellido() + "\n");
-                        buffer.append("Usuario: " + u.getUsuario() + "\n");
-                        buffer.append("Contraseña: " + u.getContraseña());
-                        limpiarCampos();
+                        Toast.makeText(Registrar.this, "Usuario registrado con exito", Toast.LENGTH_SHORT).show();
+                        etNom.setText("");
+                        etApe.setText("");
+                        etUsu.setText("");
+                        etPas.setText("");
                     } else {
-                        //Mostrar un error
                         Toast.makeText(Registrar.this, "Nombre de Usuario ya existe", Toast.LENGTH_SHORT).show();
                         etUsu.setText("");
                         etUsu.requestFocus();

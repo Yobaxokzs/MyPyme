@@ -43,7 +43,7 @@ public class DAOHelperUsuario extends SQLiteOpenHelper  {
         cv.put("NOM_USU", u.getNombre());
         cv.put("APE_USU", u.getApellido());
         cv.put("USERNAME", u.getUsuario());
-        cv.put("PASSWORD", u.getContraseña());
+        cv.put("PASSWORD", u.getContrasena());
         //agregamos los datos a la BD
         //Método insert es propio de la clase SQLiteDatabase
         long res = db.insert(MI_TABLA, null, cv);
@@ -73,7 +73,7 @@ public class DAOHelperUsuario extends SQLiteOpenHelper  {
         cv.put("NOM_USU", u.getNombre());
         cv.put("APE_USU", u.getApellido());
         cv.put("USERNAME", u.getUsuario());
-        cv.put("PASSWORD", u.getContraseña());
+        cv.put("PASSWORD", u.getContrasena());
         //agregamos los datos a la BD
         int res = db.update(MI_TABLA, cv, "ID_USU=?", new String[]{Integer.toString(u.getId())});
         //Retorna un long en caso de agregar datos
@@ -94,7 +94,7 @@ public class DAOHelperUsuario extends SQLiteOpenHelper  {
             u.setNombre(datos.getString(1));
             u.setApellido(datos.getString(2));
             u.setUsuario(datos.getString(3));
-            u.setContraseña(datos.getString(4));
+            u.setContrasena(datos.getString(4));
             lista.add(u);
         }
         db.close();
