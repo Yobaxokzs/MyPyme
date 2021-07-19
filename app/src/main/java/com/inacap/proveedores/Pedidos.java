@@ -141,11 +141,11 @@ public class Pedidos extends AppCompatActivity implements View.OnClickListener {
 
             BaseDeDatos.close();
             et_idPedido.setText("");
-            et_ClienteDelPedido.setText("");
-            et_CiudadPedido.setText("");
-            et_ContactoPedido.setText("");
-            et_ProductoDelPedido.setText("");
-            et_CantidadDelPedido.setText("");
+            tv1.setText("");
+            tv2.setText("");
+            tv3.setText("");
+            tv4.setText("");
+            tv5.setText("");
             et_FechaCreacion.setText("");
             et_FechaEntrega.setText("");
 
@@ -208,11 +208,11 @@ public class Pedidos extends AppCompatActivity implements View.OnClickListener {
             int cantidad = BaseDeDatos.delete("Pedidos", "idPedido=" + idPedidoEliminar, null);
             BaseDeDatos.close();
             et_idPedido.setText("");
-            et_ClienteDelPedido.setText("");
-            et_CiudadPedido.setText("");
-            et_ContactoPedido.setText("");
-            et_ProductoDelPedido.setText("");
-            et_CantidadDelPedido.setText("");
+            tv1.setText("");
+            tv2.setText("");
+            tv3.setText("");
+            tv4.setText("");
+            tv5.setText("");
             et_FechaCreacion.setText("");
             et_FechaEntrega.setText("");
 

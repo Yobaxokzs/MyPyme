@@ -79,8 +79,8 @@
         android:id="@+id/btnEliminarPedido"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="48dp"
         android:onClick="PEDIDOEliminarPedido"
         android:text="Eliminar"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
@@ -93,7 +93,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="152dp"
         android:layout_marginEnd="12dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="48dp"
         android:onClick="PEDIDOModificarPedido"
         android:text="Modificar"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
@@ -114,21 +114,21 @@
         app:layout_constraintHorizontal_bias="0.049"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976" />
+        app:layout_constraintVertical_bias="0.928" />
 
     <Button
         android:id="@+id/btnBuscarPedido"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="81dp"
+        android:layout_height="48dp"
         android:onClick="CLIENTEIrAlListadoPINI"
         android:text="Buscar"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.343"
+        app:layout_constraintHorizontal_bias="0.345"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976" />
+        app:layout_constraintVertical_bias="0.928" />
 
     <TextView
         android:id="@+id/textView45"

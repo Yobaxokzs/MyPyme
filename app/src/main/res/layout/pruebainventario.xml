@@ -11,9 +11,14 @@
         <ListView
             android:id="@+id/id_listviewprueba"
             android:layout_width="match_parent"
-            android:layout_height="604dp" >
+            android:layout_height="559dp">
 
         </ListView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"></LinearLayout>
 
         <EditText
             android:id="@+id/buscador"
@@ -22,6 +27,7 @@
             android:ems="10"
             android:hint="Buscar aquí"
             android:inputType="textPersonName" />
+
     </LinearLayout>
 
 </RelativeLayout>
