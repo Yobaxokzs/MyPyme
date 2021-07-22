@@ -79,23 +79,22 @@ public class listaClientesINI extends AppCompatActivity {
 
         //--- filtro campo editText.
         buscadorClientesINI.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            }
+        }
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
             adaptador.getFilter().filter(s);
-            }
+        }
 
-            @Override
-            public void afterTextChanged(Editable s) {
+        @Override
+        public void afterTextChanged(Editable s) {
+        }
+    });
 
-            }
-        });
-
-    }
+}
 
     private  void consultarListaClientes(){
         SQLiteDatabase db = conn.getReadableDatabase();
@@ -124,8 +123,4 @@ public class listaClientesINI extends AppCompatActivity {
             listaInformacionCliINI.add(listaClientesINI.get(i).getIdCliente()+" - " + listaClientesINI.get(i).getNombreCliente()+" - " + listaClientesINI.get(i).getApellidoCliente());
         }
     }
-
-
-
-
 }

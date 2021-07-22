@@ -4,11 +4,11 @@ import androidx.annotation.NonNull;
 
 public class ClasePedidos {
     int idPedido, cantidadProducto;
-    String nombreCliente, ciudadPedido, nombreProducto, estadoPedido, fechaCreacion, fechaEntrega, contactoPedido;
+    String nombreCliente, ciudadPedido, nombreProducto, estadoPedido, fechaCreacion, fechaEntrega, contactoPedido, precioPedido;
 
     public ClasePedidos(){
     }
-    public ClasePedidos(int idPedido, String nombreCliente, String ciudadPedido, String nombreProducto, int cantidadProducto, String estadoPedido, String fechaCreacion, String fechaEntrega, String contactoPedido){
+    public ClasePedidos(int idPedido, String nombreCliente, String ciudadPedido, String nombreProducto, int cantidadProducto, String estadoPedido, String fechaCreacion, String fechaEntrega, String contactoPedido, String precioPedido){
         this.idPedido = idPedido;
         this.nombreCliente = nombreCliente;
         this.ciudadPedido = ciudadPedido;
@@ -18,6 +18,7 @@ public class ClasePedidos {
         this.fechaCreacion = fechaCreacion;
         this.fechaEntrega = fechaEntrega;
         this.contactoPedido = contactoPedido;
+        this.precioPedido = precioPedido;
     }
 
     public int getIdPedido(){
@@ -82,6 +83,13 @@ public class ClasePedidos {
     public void setContactoPedido(String contactoPedido){
         this.contactoPedido = contactoPedido;
     }
+
+    public String getPrecioPedido(){
+        return precioPedido;
+    }
+    public void setPrecioPedido(String precioPedido){
+        this.precioPedido = precioPedido;
+    }
     //@NonNull
     @Override
     public String toString() {
@@ -92,6 +100,7 @@ public class ClasePedidos {
                 "Cantidad Producto: " + cantidadProducto + '\n' +
                 "Estado Pedido: " + estadoPedido + '\n' +
                 "Fecha Creación: " + fechaCreacion + '\n' +
-                "Fecha Entrega: " + fechaEntrega + '\n';
+                "Fecha Entrega: " + fechaEntrega + '\n' +
+                "PRECIO : " + precioPedido + '\n';
     }
 }

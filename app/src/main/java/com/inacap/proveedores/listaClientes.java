@@ -52,7 +52,7 @@ public class listaClientes extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int x) {
                         if (opciones[x].equals("Seleccionar")) {
                             //cuando se elija seleccionar, pasará algo...
-                            Intent e = new Intent(view.getContext(), listaProductos.class);
+                            Intent e = new Intent(view.getContext(), Pedidos.class);
                             e.putExtra("nombreCliente", listaClientes.get(position).getNombreCliente());
                             e.putExtra("ciudadCliente", listaClientes.get(position).getCiudadCliente());
                             e.putExtra("numeroCliente", listaClientes.get(position).getNumeroCliente());

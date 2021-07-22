@@ -96,6 +96,7 @@ public class pruebainventario extends AppCompatActivity {
             pedido.setEstadoPedido(cursor.getString(5));
             pedido.setFechaCreacion(cursor.getString(6));
             pedido.setFechaEntrega(cursor.getString(7));
+            pedido.setPrecioPedido(cursor.getString(9));
 
             listaPedidos.add(pedido);
         }

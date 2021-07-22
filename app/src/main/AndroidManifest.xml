@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Proveedores">
+        <activity android:name=".Seleccion"></activity>
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -16,25 +17,49 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" android:parentActivityName=".Inicio">
+        <activity
+            android:name=".MainActivity"
+            android:parentActivityName=".Inicio">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ActivityProductos" android:parentActivityName=".Inicio"></activity>
-        <activity android:name=".ActivityClientes" android:parentActivityName=".Inicio"></activity>
-        <activity android:name=".Inventario" android:parentActivityName=".Inicio"></activity>
-        <activity android:name=".Pedidos" android:parentActivityName=".Inicio"></activity>
-        <activity android:name=".Registrar" android:parentActivityName=".LoginActivity"></activity>
-        <activity android:name=".Inicio"></activity>
-        <activity android:name=".pruebainventario" android:parentActivityName=".Inicio"></activity>
-        <activity android:name=".listaClientes" android:parentActivityName=".Pedidos"> </activity>
-        <activity android:name=".listaProductos" android:parentActivityName=".Pedidos"></activity>
-        <activity android:name=".listaProductosINI" android:parentActivityName=".ActivityProductos"></activity>
-        <activity android:name=".listaClientesINI" android:parentActivityName=".ActivityClientes"></activity>
-        <activity android:name=".listaPedidosINI" android:parentActivityName=".Pedidos"></activity>
+        <activity
+            android:name=".ActivityProductos"
+            android:parentActivityName=".Inicio" />
+        <activity
+            android:name=".ActivityClientes"
+            android:parentActivityName=".Inicio" />
+        <activity
+            android:name=".Inventario"
+            android:parentActivityName=".Inicio" />
+        <activity
+            android:name=".Pedidos"
+            android:parentActivityName=".Inicio" />
+        <activity
+            android:name=".Registrar"
+            android:parentActivityName=".LoginActivity" />
+        <activity android:name=".Inicio" />
+        <activity
+            android:name=".pruebainventario"
+            android:parentActivityName=".Inicio" />
+        <activity
+            android:name=".listaClientes"
+            android:parentActivityName=".Pedidos"></activity>
+        <activity
+            android:name=".listaProductos"
+            android:parentActivityName=".Pedidos" />
+        <activity
+            android:name=".listaProductosINI"
+            android:parentActivityName=".ActivityProductos" />
+        <activity
+            android:name=".listaClientesINI"
+            android:parentActivityName=".ActivityClientes" />
+        <activity
+            android:name=".listaPedidosINI"
+            android:parentActivityName=".Pedidos" />
     </application>
 
 </manifest>

@@ -11,12 +11,15 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -26,12 +29,18 @@ public class Pedidos extends AppCompatActivity implements View.OnClickListener {
     Button bbtnAgregarPedido, bbtnBuscarPedido, bbtnModificarPedido, bbtnEliminarPedido, bbtnFechaCreacion, bbtnFechaEntrega, bbtnBuscarNombreCli;
     EditText et_idPedido, et_ClienteDelPedido, et_CiudadPedido, et_ContactoPedido, et_ProductoDelPedido, et_CantidadDelPedido, et_EstadoDelPedido,
             et_FechaCreacion, et_FechaEntrega, et_nombreClienteBuscar, editTextTextPersonName;
-
+    ListView productoslistado;
+    ArrayList<String> listProductos;
     private int dia,mes,ano;
     Spinner comboestado;
-    ArrayList<String> Estado;
-    TextView tv1, tv2, tv3, tv4, tv5;
-    String dato;
+    ArrayList<String> Estado, ListadoPrueba;
+    TextView tv1, tv2, tv3, tv4, tv5, tv6;
+    String dato, prueba;
+    ListView listViewPp;
+    ArrayList<String> listaInformacionPp;
+    ArrayList<ClasePp> listaPp;
+    AdminSQLiteOpenHelper conn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +52,7 @@ public class Pedidos extends AppCompatActivity implements View.OnClickListener {
         tv3 = (TextView) findViewById(R.id.id_tv3);
         tv4 = (TextView) findViewById(R.id.id_tv4);
         tv5 = (TextView) findViewById(R.id.id_tv5);
+        tv6 = (TextView) findViewById(R.id.id_tv6);
 
         bbtnAgregarPedido = (Button) findViewById(R.id.btnAgregarPedido);
         bbtnBuscarPedido = (Button) findViewById(R.id.btnBuscarCliente);
@@ -55,14 +65,28 @@ public class Pedidos extends AppCompatActivity implements View.OnClickListener {
 
         bbtnFechaCreacion.setOnClickListener(this);
         bbtnFechaEntrega.setOnClickListener(this);
-
         et_idPedido = (EditText) findViewById(R.id.txt_IdPedido);
         et_FechaCreacion = (EditText) findViewById(R.id.txt_FechaCreacion);
         et_FechaEntrega = (EditText) findViewById(R.id.txt_FechaEntrega);
+        productoslistado = (ListView) findViewById(R.id.listado);
+        conn = new AdminSQLiteOpenHelper(getApplicationContext(),"administracionPp",null,1);
+        listViewPp = (ListView) findViewById(R.id.listado);
+        consultarListaPp();
         obtenerLista();
+        cargarListado();
+        consultaCantidad();
+        precioProductos();
+        ArrayAdapter adaptadorPp = new ArrayAdapter(this, android.R.layout.simple_list_item_1,listaInformacionPp);
+        listViewPp.setAdapter(adaptadorPp);
         ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this, android.R.layout.simple_spinner_item, Estado);
         comboestado.setAdapter(adaptador);
-
+        String datos="";
+        datos = obtenerStrings();
+        String cantidadx = "";
+        cantidadx = consultaCantidad();
+        String preciox ="";
+        preciox= precioProductos();
+        // Pa mostrar la wea de productos seleccionados Toast.makeText(this, obtenerStrings(), Toast.LENGTH_SHORT).show();
         String nombreCliente = getIntent().getStringExtra("nombreCliente");
         tv3.setText(nombreCliente);
         String ciudadCliente = getIntent().getStringExtra("ciudadCliente");
@@ -72,10 +96,12 @@ public class Pedidos extends AppCompatActivity implements View.OnClickListener {
         tv5.setText(numeroCli);
 
         String nombreProducto = getIntent().getStringExtra("nombreProducto");
-        tv1.setText(nombreProducto);
+        tv1.setText(datos);
         int stockProducto = getIntent().getIntExtra("stockProducto", 0);
         String stockText = String.valueOf(stockProducto);
-        tv2.setText(stockText);
+        tv2.setText(cantidadx);
+        tv6.setText(preciox);
+
         /* Seteo /*/
         String valor = getIntent().getStringExtra("hola");
         if (valor != null) {
@@ -119,13 +145,14 @@ public class Pedidos extends AppCompatActivity implements View.OnClickListener {
         String nombreCliPedid = tv3.getText().toString();
         String ciudadPedid = tv4.getText().toString();
         String contactoPedid = tv5.getText().toString();
+        String precioPedido = tv6.getText().toString();
 
         String estadoDelPedid = comboestado.getSelectedItem().toString();
         String fechaCreaciDelPedid = et_FechaCreacion.getText().toString();
         String fechaEntregDelPedid = et_FechaEntrega.getText().toString();
 
         if (!idPedid.isEmpty()  && !nombreCliPedid.isEmpty() && !ciudadPedid.isEmpty() && !contactoPedid.isEmpty() && !productoDelPedid.isEmpty() && !cantidadDelPedid.isEmpty() &&
-                !estadoDelPedid.isEmpty() && !fechaCreaciDelPedid.isEmpty() && !fechaEntregDelPedid.isEmpty()) {
+                !estadoDelPedid.isEmpty() && !fechaCreaciDelPedid.isEmpty() && !fechaEntregDelPedid.isEmpty() && !precioPedido.isEmpty()) {
             ContentValues registro = new ContentValues();
             registro.put("idPedido", idPedid);
             registro.put("nombreCliente", nombreCliPedid);
@@ -136,20 +163,22 @@ public class Pedidos extends AppCompatActivity implements View.OnClickListener {
             registro.put("fechaCreacion", fechaCreaciDelPedid);
             registro.put("fechaEntrega", fechaEntregDelPedid);
             registro.put("contactoPedido", contactoPedid);
-
+            registro.put("precioTotal", precioPedido);
             BaseDeDatos.insert("Pedidos", null, registro);
 
-            BaseDeDatos.close();
             et_idPedido.setText("");
             tv1.setText("");
             tv2.setText("");
             tv3.setText("");
             tv4.setText("");
             tv5.setText("");
+            tv6.setText("");
             et_FechaCreacion.setText("");
             et_FechaEntrega.setText("");
-
+            deleteAll();
             Toast.makeText(this, "Registro existoso!", Toast.LENGTH_SHORT).show();
+            Intent e = new Intent(view.getContext(), Pedidos.class);
+            startActivity(e);
         } else {
             Toast.makeText(this, "Debes llenar todos los campos", Toast.LENGTH_SHORT).show();
         }
@@ -188,7 +217,7 @@ public class Pedidos extends AppCompatActivity implements View.OnClickListener {
     }
 
     public void PEDIDOBuscarClientePedido (View view){
-        Intent e = new Intent(this, listaClientes.class);
+        Intent e = new Intent(this, listaProductos.class);
         startActivity(e);
     }
 
@@ -319,6 +348,48 @@ public class Pedidos extends AppCompatActivity implements View.OnClickListener {
         Estado.add("Entregado");
     }
 
+    private void cargarListado(){
+        ListadoPrueba = new ArrayList<String>();
+        ListadoPrueba.add("Kukys");
+        ListadoPrueba.add("Holas");
+
+    }
+
+    private  void consultarListaPp(){
+        SQLiteDatabase db = conn.getReadableDatabase();
+        ClasePp Pp = null;
+        listaPp = new ArrayList<ClasePp>();
+        Cursor cursor = db.rawQuery("SELECT * FROM pedidoProducto",null);
+        while (cursor.moveToNext()){
+            Pp = new ClasePp();
+            Pp.setIdPp(cursor.getInt(0));
+            Pp.setNombrePp(cursor.getString(1));
+            Pp.setPrecioPp(cursor.getInt(2));
+            Pp.setCantidadPp(cursor.getInt(3));
+
+            listaPp.add(Pp);
+        }
+        obtenerListaPp();
+    }
+    private void obtenerListaPp() {
+        listaInformacionPp = new ArrayList<>();
+        for(int i=0; i<listaPp.size();i++){
+            listaInformacionPp.add(listaPp.get(i).getNombrePp()+" | " + listaPp.get(i).getPrecioPp()+" | " + listaPp.get(i).getCantidadPp());
+        }
+    }
+
+
+    private String obtenerStrings() {
+        String productoscanasta="";
+        listaInformacionPp = new ArrayList<>();
+        for(int i=0; i<listaPp.size();i++){
+            productoscanasta += (listaPp.get(i).getNombrePp()+" | " );
+        }
+        return productoscanasta;
+    }
+
+
+
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
 
@@ -329,6 +400,33 @@ public class Pedidos extends AppCompatActivity implements View.OnClickListener {
         super.onSaveInstanceState(outState);
         dato = tv3.getText().toString();
         outState.putString("nombreCliente", dato);
+    }
+
+    public void deleteAll()
+    {
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "administracionPp", null, 1);
+        SQLiteDatabase BaseDeDatos = admin.getWritableDatabase();
+        BaseDeDatos.delete("pedidoProducto",null, null);
+    }
+
+    private  String consultaCantidad(){
+        SQLiteDatabase db = conn.getReadableDatabase();
+        String cantidadpp ="";
+        Cursor cursor = db.rawQuery("SELECT SUM(cantidadPp) FROM pedidoProducto",null);
+        while (cursor.moveToNext()){
+            cantidadpp = (cursor.getString(0));
+        }
+        return cantidadpp;
+    }
+
+    private  String precioProductos(){
+        SQLiteDatabase db = conn.getReadableDatabase();
+        String preciopp ="";
+        Cursor cursor = db.rawQuery("SELECT SUM(precioPp) FROM pedidoProducto",null);
+        while (cursor.moveToNext()){
+            preciopp = (cursor.getString(0));
+        }
+        return preciopp;
     }
 
 

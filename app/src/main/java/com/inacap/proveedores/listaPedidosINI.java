@@ -117,6 +117,7 @@ public class listaPedidosINI extends AppCompatActivity {
             pedidos.setFechaCreacion(cursor.getString(6));
             pedidos.setFechaEntrega(cursor.getString(7));
             pedidos.setContactoPedido(cursor.getString(8));
+            pedidos.setPrecioPedido(cursor.getString(9));
 
             listaPedidosINI.add(pedidos);
         }
